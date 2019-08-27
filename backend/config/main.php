@@ -18,7 +18,8 @@ return [
         ],
         'user' => [
             'identityClass' => 'common\models\User',
-            'enableAutoLogin' => true,
+            'enableAutoLogin' => false,
+            'authTimeout' => 150000,
             'identityCookie' => ['name' => '_identity-backend', 'httpOnly' => true],
         ],
         'session' => [
@@ -37,14 +38,14 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
-        
+        /*
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
             ],
         ],
-        
+        */
     ],
     'params' => $params,
 ];
