@@ -51,6 +51,10 @@ $this->params['breadcrumbs'][] = $this->title;
             .img_class_grid_gallery .desc {
                 text-align: center;
             }
+            .hotspots_display_wrapper{
+                max-width: 960px;
+                margin: auto;
+            }
         </style>
         <div>
             <h3><?=$model->ip_category;?></h3>
