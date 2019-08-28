@@ -5,9 +5,11 @@ namespace backend\controllers;
 use Yii;
 use backend\models\ImageProcessingList;
 use backend\models\ImageProcessingListSearch;
+use backend\models\ImageProcessingListViewSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\data\Pagination;
 
 /**
  * ImageProcessingController implements the CRUD actions for ImageProcessing model.
@@ -57,6 +59,60 @@ class ImageProcessingListController extends Controller
         ]);
     }
 
+    /**
+     * Displays a single ImageProcessing model.
+     * @param integer $id
+     * @return mixed
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    public function actionGridview($date)
+    {
+        /*return $this->render('view', [
+            'model' => $this->findModel(array('ip_created_date'=>$date)),
+        ]);*/
+        
+        /*$searchModel = new ImageProcessingGridViewSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('gridview', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);*/
+        $query = ImageProcessingList::find();
+        if(!empty($date)){
+            $query->andFilterWhere(['like', 'DATE(ip_created_date)', $date]);
+        }
+        // get the total number of users
+        $count = $query->count();
+        //creating the pagination object
+        $pagination = new Pagination(['totalCount' => $count, 'defaultPageSize' => 10]);
+        //limit the query using the pagination and retrieve the users
+        $models = $query->offset($pagination->offset)
+           ->limit($pagination->limit)
+           ->all();
+        return $this->render('gridview', [
+           'models' => $models,
+           'pagination' => $pagination,
+        ]);
+    }
+    
+    /**
+     * Displays a single ImageProcessing model.
+     * @param integer $id
+     * @return mixed
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    public function actionListview($date)
+    {
+        $searchModel = new ImageProcessingListViewSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('listview', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+    
     /**
      * Creates a new ImageProcessing model.
      * If creation is successful, the browser will be redirected to the 'view' page.

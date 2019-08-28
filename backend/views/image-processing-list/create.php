@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\ImageProcessing */
 
-$this->title = 'Create Image Processing';
+$this->title = 'Upload Image';
 $this->params['breadcrumbs'][] = ['label' => 'Image Processings', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
