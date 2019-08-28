@@ -67,17 +67,6 @@ class ImageProcessingListController extends Controller
      */
     public function actionGridview($date)
     {
-        /*return $this->render('view', [
-            'model' => $this->findModel(array('ip_created_date'=>$date)),
-        ]);*/
-        
-        /*$searchModel = new ImageProcessingGridViewSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
-        return $this->render('gridview', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);*/
         $query = ImageProcessingList::find();
         if(!empty($date)){
             $query->andFilterWhere(['like', 'DATE(ip_created_date)', $date]);
