@@ -68,7 +68,8 @@ class ImageProcessingListController extends Controller
      */
     public function actionGridview($date)
     {
-        $query = ImageProcessing::find();
+        $query = ImageProcessing::find()
+                ->select(['*']);
         if(!empty($date)){
             $query->andFilterWhere(['like', 'DATE(ip_created_date)', $date]);
         }
