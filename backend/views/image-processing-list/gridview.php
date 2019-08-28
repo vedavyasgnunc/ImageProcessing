@@ -18,9 +18,11 @@ $this->params['breadcrumbs'][] = $this->title;
 <?php //$modelsData = (array)$models[0]; echo(json_encode($modelsData));?>
     <?php $arrayData = array();
     foreach ($models as $model): 
-    $arrayData[] = (array)$model;
-     endforeach; 
-     var_dump(json_encode($arrayData));?>
+    $arrayData[] = array('ip_job_id'=>$model->ip_job_id,'ip_image_id'=>$model->ip_image_id,'ip_category'=>$model->ip_category,'ip_image_url'=>$model->ip_image_url,'ip_img_class'=>$model->ip_img_class,'ip_img_object'=>json_decode($model->ip_img_object,true));
+    endforeach; 
+    $modelsData = json_encode($arrayData);
+    echo $modelsData;
+    ?>
 <?php
    // display pagination
    echo LinkPager::widget([
