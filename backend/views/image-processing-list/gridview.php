@@ -55,8 +55,13 @@ $this->params['breadcrumbs'][] = $this->title;
             -moz-border-radius: 2px;
             border-radius: 2px;
             position: relative;
+            display: block;
+            text-decoration: none;
         }
-        .grid-thumb-container a{
+        .grid-thumb-container:hover{
+            text-decoration: none;
+        }
+        .grid-thumb-container h5{
             display: block;
             margin: 5px;
             color: #000;
@@ -81,8 +86,9 @@ $this->params['breadcrumbs'][] = $this->title;
                 elem.classList.add('grid-thumb');
                 document.getElementById('main_wrapper').append(elem);
 
-                // container is the child to elem containing all images and titles
-                var container = document.createElement('div');
+                // container is the child to elem containing all images and titles and will redirect to details page
+                var container = document.createElement('a');
+                container.href = '?r=image-processing%2Fview&id='+item.ip_job_id;
                 container.classList.add('grid-thumb-container');
                 elem.append(container);
 
@@ -93,7 +99,6 @@ $this->params['breadcrumbs'][] = $this->title;
                         item.ip_img_object["object"].forEach(function (item) {
 
                             // selection is the element for every single annotaion present for that image
-                            console.log(elemImage.clientWidth)
                             var selection = createDiv(item.X1, item.Y1, item.X2, item.Y2, elemImage.clientWidth, elemImage.clientHeight, item.Label, elemImage.naturalWidth, elemImage.naturalHeight)
                             container.append(selection);
                             selection.addEventListener('mouseover', function (event) {
@@ -109,8 +114,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 container.append(elemImage);
 
                 // title is the title element of the image
-                var title = document.createElement('a');
-                title.href = '?r=image-processing%2Fview&id='+item.ip_job_id;
+                var title = document.createElement('h5');
                 title.innerText = item.ip_category;
                 container.append(title)
             })
