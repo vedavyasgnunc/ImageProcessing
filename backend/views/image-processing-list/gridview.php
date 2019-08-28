@@ -15,7 +15,12 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="image-processing-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
-<?php $modelsData = (array)$models[0]; echo(json_encode($modelsData));?>
+<?php //$modelsData = (array)$models[0]; echo(json_encode($modelsData));?>
+    <?php $arrayData = array();
+    foreach ($models as $model): 
+    $arrayData[] = (array)$model;
+     endforeach; 
+     var_dump(json_encode($arrayData));?>
 <?php
    // display pagination
    echo LinkPager::widget([
