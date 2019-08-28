@@ -3,6 +3,7 @@
 namespace backend\controllers;
 
 use Yii;
+use backend\models\ImageProcessing;
 use backend\models\ImageProcessingList;
 use backend\models\ImageProcessingListSearch;
 use backend\models\ImageProcessingListViewSearch;
@@ -67,7 +68,7 @@ class ImageProcessingListController extends Controller
      */
     public function actionGridview($date)
     {
-        $query = ImageProcessingList::find();
+        $query = ImageProcessing::find();
         if(!empty($date)){
             $query->andFilterWhere(['like', 'DATE(ip_created_date)', $date]);
         }
