@@ -42,7 +42,7 @@ $this->params['breadcrumbs'][] = $this->title;
         .grid-thumb{
             display: inline-block;
             float: left;
-            width: 33%;
+            width: 25%;
             position: relative;
             padding: 1rem;
         }

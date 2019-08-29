@@ -10,16 +10,93 @@ use yii\widgets\ActiveForm;
 
 <div class="image-processing-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <style>
+        .form-controls-row {
+            display: flex;
+        }
 
-    <?= $form->field($model, 'image')->fileInput() ?>
+        .form-controls-row .control {
+            padding-right: 20px;
+        }
 
-    <?= $form->field($model, 'ip_image_segmentation_flag')->checkbox() ?>
+        .custom-file-wrapper {
+            position: relative;
+            display: inline-block;
+            overflow: hidden;
+        }
 
-    <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
-    </div>
+        .custom-file-wrapper input {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            opacity: 0;
+            cursor: pointer;
+        }
+        .file-name{
+            padding: 4px;
+        }
+    </style>
+    <form id="uploadForm" method="post" style="max-width: 50%;">
+        <div class="form-controls-row">
+            <div class="control">
+                <input type="radio" name="uploadType" id="htmlUpload"/>
+                <label for="htmlUpload">HTML Upload</label>
+            </div>
+            <div class="control">
+                <input type="radio" name="uploadType" id="imageUpload"/>
+                <label for="imageUpload">Image Upload</label>
+            </div>
+        </div>
+        <div id="htmlUploadDiv" style="display: none;">
+            <div style="display: flex; align-items: center;margin: 20px 0;">
+                <div class="custom-file-wrapper">
+                    <button class="btn btn-outline btn-primary">Upload</button>
+                    <input type="file" id="htmlFileChoose" name="htmlFile">
+                </div>
+                <div class="file-name" id="filename">
 
-    <?php ActiveForm::end(); ?>
+                </div>
+            </div>
+        </div>
+        <div id="imageUploadDiv" style="display: none;">
+            <div class="form-group" style="margin: 20px 0;">
+            <input type="text" class="form-control" name="imageUrl" placeholder="Image URL"/>
+            </div>
+            <div class="form-group" style="margin: 20px 0;">
+                <input type="checkbox" class="form" name="imageSegmentation" id="imageSegmentation"/>
+                <label for="imageSegmentation">Image Segmentation</label>
+            </div>
+        </div>
+        <button class="btn btn-success" style="margin: 20px 0;" type="submit">Save</button>
+    </form>
+    <script>
+        var form = document.getElementById('uploadForm');
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            console.log(this);
+        });
+        idOf('htmlUpload').addEventListener('change', function () {
+            if (this.value === 'on') {
+                idOf('imageUploadDiv').style.display = "none";
+                idOf('htmlUploadDiv').style.display = "block";
+            }
+        });
+        idOf('imageUpload').addEventListener('change', function () {
+            if (this.value === 'on') {
+                idOf('imageUploadDiv').style.display = "block";
+                idOf('htmlUploadDiv').style.display = "none";
+            }
+        });
+        idOf('htmlFileChoose').addEventListener('change', function () {
+            if (this.files.length) {
+                idOf('filename').innerText = this.files[0].name;
+            }
+        });
 
+        function idOf(id) {
+            return document.getElementById(id)
+        }
+    </script>
 </div>
