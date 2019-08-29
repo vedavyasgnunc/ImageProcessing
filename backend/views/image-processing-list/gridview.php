@@ -73,7 +73,7 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
     <?php $arrayData = array();
     foreach ($models as $model): 
-    $arrayData[] = array('ip_job_id'=>$model->ip_job_id,'ip_image_id'=>$model->ip_image_id,'ip_category'=>$model->ip_category,'ip_image_url'=>$model->ip_image_url,'ip_img_class'=>json_decode($model->ip_img_class,true),'ip_img_object'=>json_decode($model->ip_img_object,true));
+    $arrayData[] = array('ip_job_id'=>$model->ip_job_id,'ip_job_fk'=>$model->ip_job_fk,'ip_image_id'=>$model->ip_image_id,'ip_category'=>$model->ip_category,'ip_image_url'=>$model->ip_image_url,'ip_img_class'=>json_decode($model->ip_img_class,true),'ip_img_object'=>json_decode($model->ip_img_object,true));
     endforeach; 
     $modelsData = json_encode($arrayData);
     ?>
