@@ -59,9 +59,13 @@ class ImageProcessingListViewSearch extends ImageProcessingList
                 'ip_created_date' => [
                     'asc' => ['ip_created_date' => SORT_ASC],
                     'desc' => ['ip_created_date' => SORT_DESC],
+                ],
+                'ip_modified_date' => [
+                    'asc' => ['ip_modified_date' => SORT_ASC],
+                    'desc' => ['ip_modified_date' => SORT_DESC],
                 ]
             ],
-            'defaultOrder' => ['ip_created_date'=>SORT_DESC]
+            'defaultOrder' => ['ip_modified_date'=>SORT_DESC]
         ]);
  
         $this->load($params);
@@ -74,7 +78,7 @@ class ImageProcessingListViewSearch extends ImageProcessingList
         $dateVal = Yii::$app->request->get('date');
         // grid filtering conditions
         $query->andFilterWhere([
-            'ip_created_date' => $this->ip_created_date,
+            'ip_modified_date' => $this->ip_modified_date,
         ]);
         if(!empty($dateVal)){
             $query->andFilterWhere(['like', 'DATE(ip_created_date)', $dateVal]);

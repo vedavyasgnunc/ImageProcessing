@@ -8,12 +8,12 @@ use yii\helpers\Url;
 /* @var $searchModel app\models\ImageProcessingSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Image Processings';
-$this->params['breadcrumbs'][] = $this->title;
+$this->title = 'Vision';
+$this->params['breadcrumbs'][] = 'Vision';
 ?>
 <div class="image-processing-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h1><?= Html::encode('Vision') ?></h1>
 
     <p>
         <?= Html::a('Upload Image', ['create'], ['class' => 'btn btn-success']) ?>
@@ -27,7 +27,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
             //'ip_job_id',
-            'ip_created_date:date',
+            'ip_modified_date:date',
             'countImages',
             //'ip_image_id',
             //'ip_image_url:url',
@@ -62,11 +62,11 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             'urlCreator' => function ($action, $model, $key, $index) {
                 if ($action === 'gridview') {
-                    $url = Url::to(['image-processing-list/gridview', 'date' => date("Y-m-d",strtotime($model->ip_created_date))]);
+                    $url = Url::to(['image-processing-list/gridview', 'date' => date("Y-m-d",strtotime($model->ip_modified_date))]);
                     return $url;
                 }
                 if ($action === 'listview') {
-                    $url = Url::to(['image-processing-list/listview', 'date' => date("Y-m-d",strtotime($model->ip_created_date))]);
+                    $url = Url::to(['image-processing-list/listview', 'date' => date("Y-m-d",strtotime($model->ip_modified_date))]);
                     return $url;
                 }
             }

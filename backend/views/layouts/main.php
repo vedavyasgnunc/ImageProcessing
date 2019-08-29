@@ -29,21 +29,20 @@ AppAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => Yii::$app->name,
+        'brandLabel' => 'Vision',
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
         ],
     ]);
-    $menuItems = [
-        ['label' => 'Home', 'url' => ['/site/index']],
-    ];
+    $menuItems = [];
+    //['label' => 'Home', 'url' => ['/site/index']],
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
     } else {
-        $menuItems[] = ['label' => 'Image Processing', 'url' => ['/image-processing/index']];
-        $menuItems[] = ['label' => 'Image Processing New', 'url' => ['/image-processing-list/index']];
-        $menuItems[] = ['label' => 'Image Domain', 'url' => ['/image-category-domain/index']];
+        /*$menuItems[] = ['label' => 'Image Processing', 'url' => ['/image-processing/index']];*/
+        $menuItems[] = ['label' => 'Vision', 'url' => ['/image-processing-list/index']];
+        $menuItems[] = ['label' => 'Data', 'url' => ['/image-category-domain/index']];
         $menuItems[] = '<li>'
             . Html::beginForm(['/site/logout'], 'post')
             . Html::submitButton(

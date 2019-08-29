@@ -71,8 +71,8 @@ class ImageProcessingList extends \yii\db\ActiveRecord
             'ip_completed_flag' => 'Ip Completed Flag',
             'ip_error_flag' => 'Ip Error Flag',
             'ip_error_message' => 'Ip Error Message',
-            'ip_created_date' => 'Date',
-            'ip_modified_date' => 'Ip Modified Date',
+            'ip_created_date' => 'Ip Created Date',
+            'ip_modified_date' => 'Date',
             'countImages' => 'Images Count',
         ];
     }

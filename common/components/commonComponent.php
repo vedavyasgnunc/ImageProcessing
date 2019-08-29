@@ -72,6 +72,16 @@ class commonComponent extends Component {
         return $data;
     }
     
+    /**
+     * function to return the serverUrl with http or https
+     * @return string
+     */
+    public static function getServerPath(){
+        $serverName = Yii::$app->request->serverName;
+        $serverHost = 'http://'.$serverName;
+        return $serverHost;
+    }
+    
     //execute queries and return data
     public static function ipAddressValidation()
     {
@@ -85,5 +95,15 @@ class commonComponent extends Component {
             return true;
         }
         return false;
+    }
+    
+    //execute queries and return data
+    public static function ipAddressIDsActive()
+    {
+        $hostQuery = "SELECT ipw_ip_address FROM ava_ip_address_whitelist WHERE ipw_server_type = 'IDS' and ipw_inactive = 0 limit 1";
+        $ipData = commonComponent::getQueryResults($hostQuery);
+        if(!empty($ipData))
+            return $ipData;
+        return null;
     }
 }

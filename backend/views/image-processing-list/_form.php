@@ -7,10 +7,7 @@ use yii\widgets\ActiveForm;
 /* @var $model app\models\ImageProcessing */
 /* @var $form yii\widgets\ActiveForm */
 ?>
-
-<div class="image-processing-form">
-
-    <style>
+<style>
         .form-controls-row {
             display: flex;
         }
@@ -38,22 +35,21 @@ use yii\widgets\ActiveForm;
             padding: 4px;
         }
     </style>
-    <form id="uploadForm" method="post" style="max-width: 50%;">
+<div class="image-processing-form">
+    <?php $form = ActiveForm::begin(['id' => 'uploadForm','options' => ['style' => 'max-width: 50%;','method'=>'post']]); ?>
         <div class="form-controls-row">
             <div class="control">
-                <input type="radio" name="uploadType" id="htmlUpload" checked/>
-                <label for="htmlUpload">HTML Upload</label>
+                <?= $form->field($model, 'uploadType')->radio(['label' => 'HTML Upload', 'value' => 1, 'checked' => 'checked','id'=>'htmlUpload']) ?>
             </div>
             <div class="control">
-                <input type="radio" name="uploadType" id="imageUpload"/>
-                <label for="imageUpload">Image Upload</label>
+                <?= $form->field($model, 'uploadType')->radio(['label' => 'Image Upload', 'value' => 2, 'uncheck' => null,'id'=>'imageUpload']) ?>
             </div>
         </div>
         <div id="htmlUploadDiv" >
             <div style="display: flex; align-items: center;margin: 20px 0;">
                 <div class="custom-file-wrapper">
                     <button class="btn btn-outline btn-primary">Upload</button>
-                    <input type="file" id="htmlFileChoose" name="htmlFile">
+                    <?= $form->field($model, 'imageFile')->fileInput(["id"=>"htmlFileChoose"])->label(''); ?>
                 </div>
                 <div class="file-name" id="filename">
 
@@ -61,16 +57,15 @@ use yii\widgets\ActiveForm;
             </div>
         </div>
         <div id="imageUploadDiv" style="display: none;">
-            <div class="form-group" style="margin: 20px 0;">
-            <input type="text" class="form-control" name="imageUrl" placeholder="Image URL"/>
+            <div class="form-group" >
+            <?= $form->field($model, 'ip_image_url')->textInput(["placeholder"=>"Image URL","class"=>"form-control"])->label(''); ?>
             </div>
         </div>
-        <div class="form-group" style="margin: 20px 0;">
-            <input type="checkbox" class="form" name="imageSegmentation" id="imageSegmentation"/>
-            <label for="imageSegmentation">Image Segmentation</label>
+        <div class="form-group">
+            <?= $form->field($model, 'ip_image_segmentation_flag')->checkbox(array('label'=>'Image Segmentation','labelOptions'=>array('style'=>'padding:5px;')))->label(''); ?>
         </div>
-        <button class="btn btn-success"type="submit">Save</button>
-    </form>
+        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+<?php ActiveForm::end(); ?>
     <script>
         var form = document.getElementById('uploadForm');
         form.addEventListener('submit', function (e) {
@@ -78,13 +73,13 @@ use yii\widgets\ActiveForm;
             console.log(this);
         });
         idOf('htmlUpload').addEventListener('change', function () {
-            if (this.value === 'on') {
+            if (this.checked == true) {
                 idOf('imageUploadDiv').style.display = "none";
                 idOf('htmlUploadDiv').style.display = "block";
             }
         });
         idOf('imageUpload').addEventListener('change', function () {
-            if (this.value === 'on') {
+            if (this.checked == true) {//this.value === 'on'
                 idOf('imageUploadDiv').style.display = "block";
                 idOf('htmlUploadDiv').style.display = "none";
             }

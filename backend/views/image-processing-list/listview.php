@@ -8,8 +8,8 @@ use yii\helpers\Url;
 /* @var $searchModel app\models\ImageProcessingSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'List View Image Processings';
-$this->params['breadcrumbs'][] = $this->title;
+$this->title = 'List View Vision';
+$this->params['breadcrumbs'][] = 'List View Vision';
 ?>
 <div class="image-processing-index">
 
@@ -50,7 +50,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             'urlCreator' => function ($action, $model, $key, $index) {
                 if ($action === 'view') {
-                    $url = Url::to(['image-processing-list/view', 'id' =>$model->ip_job_id]);
+                    $url = Url::to(['image-processing-list/view', 'id' =>$model->ip_image_id]);
                     return $url;
                 }
             }

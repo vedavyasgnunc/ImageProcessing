@@ -9,8 +9,8 @@ use yii\widgets\LinkPager;
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Grid View Image Processings';
-$this->params['breadcrumbs'][] = $this->title;
+$this->title = 'Grid View Vision';
+$this->params['breadcrumbs'][] = 'Grid View Vision';
 ?>
 <div class="image-processing-index">
 
@@ -88,7 +88,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 // container is the child to elem containing all images and titles and will redirect to details page
                 var container = document.createElement('a');
-                container.href = '?r=image-processing%2Fview&id='+item.ip_job_id;
+                container.href = '?r=image-processing-list%2Fview&id='+item.ip_image_id;
                 container.classList.add('grid-thumb-container');
                 elem.append(container);
 

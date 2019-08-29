@@ -41,7 +41,7 @@ class ImageProcessingListSearch extends ImageProcessingList
     public function search($params)
     {
         $query = ImageProcessingList::find()
-        ->select(['*','COUNT(ip_job_id) AS countImages']);
+        ->select(['ip_modified_date','COUNT(ip_job_id) AS countImages']);
 
         // add conditions that should always apply here
 
@@ -56,6 +56,10 @@ class ImageProcessingListSearch extends ImageProcessingList
          */
         $dataProvider->setSort([
             'attributes' => [
+                'ip_modified_date' => [
+                    'asc' => ['ip_modified_date' => SORT_ASC],
+                    'desc' => ['ip_modified_date' => SORT_DESC],
+                ],
                 'ip_created_date' => [
                     'asc' => ['ip_created_date' => SORT_ASC],
                     'desc' => ['ip_created_date' => SORT_DESC],
@@ -65,7 +69,7 @@ class ImageProcessingListSearch extends ImageProcessingList
                     'desc' => ['countImages' => SORT_DESC],
                 ],
             ],
-            'defaultOrder' => ['ip_created_date'=>SORT_DESC]
+            'defaultOrder' => ['ip_modified_date'=>SORT_DESC]
         ]);
  
         $this->load($params);
@@ -79,6 +83,7 @@ class ImageProcessingListSearch extends ImageProcessingList
         // grid filtering conditions
         $query->andFilterWhere([
             'ip_created_date' => $this->ip_created_date,
+            'ip_modified_date' => $this->ip_modified_date,
             'countImages' => $this->countImages,
         ]);
         $query->andFilterWhere(['like', 'countImages', $this->countImages]);
@@ -90,7 +95,7 @@ class ImageProcessingListSearch extends ImageProcessingList
             ->andFilterWhere(['like', 'ip_img_object', $this->ip_img_object])
             ->andFilterWhere(['like', 'ip_error_message', $this->ip_error_message]);*/
         
-        $query->groupBy('Date(ip_created_date)');
+        $query->groupBy('Date(ip_modified_date)');
 
         return $dataProvider;
     }
