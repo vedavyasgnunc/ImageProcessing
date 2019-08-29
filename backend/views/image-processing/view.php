@@ -69,15 +69,13 @@ $this->params['breadcrumbs'][] = $this->title;
             <img src="https://gcbimages.storage.googleapis.com/segementation/16323/a42000ab64f56b2b6f351987244a793f_bokeh.jpg" style="width: 150px;" />
         </div>
         <script>
-        var arr = [{ip_image_id:16323,image_url:https://gcbimages.storage.googleapis.com/segementation/16323/a42000ab64f56b2b6f351987244a793f_object.png,image_effect:transparent_path},
-        // {ip_image_id:16323,image_url:https://gcbimages.storage.googleapis.com/segementation/16323/a42000ab64f56b2b6f351987244a793f_bw.jpg,image_effect:bw_path},
-        // {ip_image_id:16323,image_url:https://gcbimages.storage.googleapis.com/segementation/16323/a42000ab64f56b2b6f351987244a793f_bwbokeh.jpg,image_effect:bwb_path},
-        // {ip_image_id:16323,image_url:https://gcbimages.storage.googleapis.com/segementation/16323/a42000ab64f56b2b6f351987244a793f_bokeh.jpg,image_effect:bokeh_path}]
+
     </script>
         </div>
     <script>
         var annotations = [<?=json_encode(json_decode($model->ip_img_object));?>];
         var image = document.getElementById('wrapper-image');
+        console.log(image);
         image.onload = function () {
             annotations[0]["object"].forEach(function (item) {
                 var selection = createDiv(item.X1,item.Y1,item.X2,item.Y2,image.clientWidth, image.clientHeight,item.Label, image.naturalWidth, image.naturalHeight)
