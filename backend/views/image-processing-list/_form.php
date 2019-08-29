@@ -41,7 +41,7 @@ use yii\widgets\ActiveForm;
     <form id="uploadForm" method="post" style="max-width: 50%;">
         <div class="form-controls-row">
             <div class="control">
-                <input type="radio" name="uploadType" id="htmlUpload"/>
+                <input type="radio" name="uploadType" id="htmlUpload" checked/>
                 <label for="htmlUpload">HTML Upload</label>
             </div>
             <div class="control">
@@ -49,7 +49,7 @@ use yii\widgets\ActiveForm;
                 <label for="imageUpload">Image Upload</label>
             </div>
         </div>
-        <div id="htmlUploadDiv" style="display: none;">
+        <div id="htmlUploadDiv" >
             <div style="display: flex; align-items: center;margin: 20px 0;">
                 <div class="custom-file-wrapper">
                     <button class="btn btn-outline btn-primary">Upload</button>
@@ -64,12 +64,12 @@ use yii\widgets\ActiveForm;
             <div class="form-group" style="margin: 20px 0;">
             <input type="text" class="form-control" name="imageUrl" placeholder="Image URL"/>
             </div>
-            <div class="form-group" style="margin: 20px 0;">
-                <input type="checkbox" class="form" name="imageSegmentation" id="imageSegmentation"/>
-                <label for="imageSegmentation">Image Segmentation</label>
-            </div>
         </div>
-        <button class="btn btn-success" style="margin: 20px 0;" type="submit">Save</button>
+        <div class="form-group" style="margin: 20px 0;">
+            <input type="checkbox" class="form" name="imageSegmentation" id="imageSegmentation"/>
+            <label for="imageSegmentation">Image Segmentation</label>
+        </div>
+        <button class="btn btn-success"type="submit">Save</button>
     </form>
     <script>
         var form = document.getElementById('uploadForm');
