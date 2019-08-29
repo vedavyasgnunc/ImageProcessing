@@ -62,6 +62,12 @@ $this->params['breadcrumbs'][] = $this->title;
         <div id="wrapper" class="hotspots_display_wrapper">
             <img src="<?=$model->ip_image_url;?>" style="width: 100%;" alt="<?=$model->ip_category;?>" id="wrapper-image"/>
         </div>
+        <div style="display: flex;justify-content: space-between;max-width: 960px;margin: 20px auto;">
+            <img src="<?=$model->ip_image_url;?>" style="width: 150px;" />
+            <img src="<?=$model->ip_image_url;?>" style="width: 150px;" />
+            <img src="<?=$model->ip_image_url;?>" style="width: 150px;" />
+            <img src="<?=$model->ip_image_url;?>" style="width: 150px;" />
+        </div>
     </div>
     <script>
         var annotations = [<?=json_encode(json_decode($model->ip_img_object));?>];
