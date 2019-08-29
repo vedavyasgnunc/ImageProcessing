@@ -63,12 +63,18 @@ $this->params['breadcrumbs'][] = $this->title;
             <img src="<?=$model->ip_image_url;?>" style="width: 100%;" alt="<?=$model->ip_category;?>" id="wrapper-image"/>
         </div>
         <div style="display: flex;justify-content: space-between;max-width: 960px;margin: 20px auto;">
-            <img src="<?=$model->ip_image_url;?>" style="width: 150px;" />
-            <img src="<?=$model->ip_image_url;?>" style="width: 150px;" />
-            <img src="<?=$model->ip_image_url;?>" style="width: 150px;" />
-            <img src="<?=$model->ip_image_url;?>" style="width: 150px;" />
+            <img src="https://gcbimages.storage.googleapis.com/segementation/16323/a42000ab64f56b2b6f351987244a793f_object.png" style="width: 150px;" />
+            <img src="https://gcbimages.storage.googleapis.com/segementation/16323/a42000ab64f56b2b6f351987244a793f_bw.jpg" style="width: 150px;" />
+            <img src="https://gcbimages.storage.googleapis.com/segementation/16323/a42000ab64f56b2b6f351987244a793f_bwbokeh.jpg" style="width: 150px;" />
+            <img src="https://gcbimages.storage.googleapis.com/segementation/16323/a42000ab64f56b2b6f351987244a793f_bokeh.jpg" style="width: 150px;" />
         </div>
-    </div>
+        <script>
+        var arr = [{ip_image_id:16323,image_url:https://gcbimages.storage.googleapis.com/segementation/16323/a42000ab64f56b2b6f351987244a793f_object.png,image_effect:transparent_path},
+        // {ip_image_id:16323,image_url:https://gcbimages.storage.googleapis.com/segementation/16323/a42000ab64f56b2b6f351987244a793f_bw.jpg,image_effect:bw_path},
+        // {ip_image_id:16323,image_url:https://gcbimages.storage.googleapis.com/segementation/16323/a42000ab64f56b2b6f351987244a793f_bwbokeh.jpg,image_effect:bwb_path},
+        // {ip_image_id:16323,image_url:https://gcbimages.storage.googleapis.com/segementation/16323/a42000ab64f56b2b6f351987244a793f_bokeh.jpg,image_effect:bokeh_path}]
+    </script>
+        </div>
     <script>
         var annotations = [<?=json_encode(json_decode($model->ip_img_object));?>];
         var image = document.getElementById('wrapper-image');
