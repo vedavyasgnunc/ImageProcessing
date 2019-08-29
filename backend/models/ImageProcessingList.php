@@ -26,7 +26,7 @@ use Yii;
  */
 class ImageProcessingList extends \yii\db\ActiveRecord
 {
-    public $countImages,$image;
+    public $countImages, $imageFile, $uploadType;
     /**
      * {@inheritdoc}
      */
@@ -41,11 +41,11 @@ class ImageProcessingList extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['ip_image_id', 'ip_client_id', 'ip_video_id', 'ip_category_id', 'ip_posted_flag', 'ip_completed_flag', 'ip_image_segmentation_flag', 'ip_error_flag','countImages'], 'integer'],
-            [['ip_img_class', 'ip_img_object', 'ip_error_message','image'], 'string'],
+            [['ip_client_id', 'ip_video_id', 'ip_category_id', 'ip_posted_flag', 'ip_completed_flag', 'ip_image_segmentation_flag', 'ip_error_flag','countImages'], 'integer'],
+            [['ip_image_id','ip_img_class', 'ip_img_object', 'ip_error_message','imageFile','ip_segmentation_object'], 'string'],
             [['ip_created_date', 'ip_modified_date'], 'safe'],
-            [['ip_image_url'], 'string', 'max' => 255],
-            [['ip_video_fk', 'ip_category'], 'string', 'max' => 100],
+            [['ip_image_url','uploadType'], 'string', 'max' => 255],
+            [['ip_video_fk', 'ip_category','ip_job_fk'], 'string', 'max' => 100],
         ];
     }
 
@@ -56,6 +56,7 @@ class ImageProcessingList extends \yii\db\ActiveRecord
     {
         return [
             'ip_job_id' => 'Ip Job ID',
+            'ip_job_fk' => 'Ip Job FK',
             'ip_image_id' => 'Ip Image ID',
             'ip_image_url' => 'Ip Image Url',
             'ip_client_id' => 'Ip Client ID',
@@ -66,10 +67,11 @@ class ImageProcessingList extends \yii\db\ActiveRecord
             'ip_img_class' => 'Ip Img Class',
             'ip_img_object' => 'Ip Img Object',
             'ip_posted_flag' => 'Ip Posted Flag',
+            'ip_segmentation_object' => 'Ip Image Segementation',
             'ip_completed_flag' => 'Ip Completed Flag',
             'ip_error_flag' => 'Ip Error Flag',
             'ip_error_message' => 'Ip Error Message',
-            'ip_created_date' => 'Ip Created Date',
+            'ip_created_date' => 'Date',
             'ip_modified_date' => 'Ip Modified Date',
             'countImages' => 'Images Count',
         ];
