@@ -26,7 +26,7 @@ use Yii;
  */
 class ImageProcessingList extends \yii\db\ActiveRecord
 {
-    public $countImages;
+    public $countImages,$image;
     /**
      * {@inheritdoc}
      */
@@ -41,8 +41,8 @@ class ImageProcessingList extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['ip_image_id', 'ip_client_id', 'ip_video_id', 'ip_category_id', 'ip_posted_flag', 'ip_completed_flag', 'ip_error_flag','countImages'], 'integer'],
-            [['ip_img_class', 'ip_img_object', 'ip_error_message'], 'string'],
+            [['ip_image_id', 'ip_client_id', 'ip_video_id', 'ip_category_id', 'ip_posted_flag', 'ip_completed_flag', 'ip_image_segmentation_flag', 'ip_error_flag','countImages'], 'integer'],
+            [['ip_img_class', 'ip_img_object', 'ip_error_message','image'], 'string'],
             [['ip_created_date', 'ip_modified_date'], 'safe'],
             [['ip_image_url'], 'string', 'max' => 255],
             [['ip_video_fk', 'ip_category'], 'string', 'max' => 100],

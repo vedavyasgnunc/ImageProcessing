@@ -6,6 +6,7 @@ use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use common\models\LoginForm;
+use common\components\commonComponent;
 
 /**
  * Site controller
@@ -60,6 +61,12 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
+        if(!commonComponent::ipAddressValidation()){
+            session_destroy();
+            Yii::$app->user->logout();
+            Yii::$app->session->setFlash('error', 'Contact Vendor for more details.');
+            return Yii::$app->getResponse()->redirect(Yii::$app->getHomeUrl());
+        }
         return $this->render('index');
     }
 

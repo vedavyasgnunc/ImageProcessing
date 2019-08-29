@@ -32,7 +32,7 @@ class commonComponent extends Component {
      * $querycond is the sql statement
      * @return results of the sql statement
      */
-    public static function getIdFromFK($querycond){
+    public static function getValueForQuery($querycond){
         $connection = Yii::$app->getDb();
         $data = $connection->createCommand("$querycond")->queryAll();
 
@@ -73,8 +73,17 @@ class commonComponent extends Component {
     }
     
     //execute queries and return data
-    public function welcome()
+    public static function ipAddressValidation()
     {
-        echo "Hello..Welcome to MyComponent";
+        $hostIpAddress = Yii::$app->request->getRemoteIp();
+        if(Yii::$app->user->identity->getId()==1 || $hostIpAddress=="::1"){
+            return true;
+        }
+        $hostQuery = "SELECT ipw_id FROM ava_ip_address_whitelist WHERE ipw_ip_address like '".$hostIpAddress."'  limit 1";
+        $hostData = commonComponent::getQueryResults($hostQuery);
+        if(count($hostData)>0){
+            return true;
+        }
+        return false;
     }
 }

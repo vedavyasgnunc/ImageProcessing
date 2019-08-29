@@ -11,6 +11,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\data\Pagination;
+use common\components\commonComponent;
 
 /**
  * ImageProcessingController implements the CRUD actions for ImageProcessing model.
@@ -38,6 +39,12 @@ class ImageProcessingListController extends Controller
      */
     public function actionIndex()
     {
+        if(!commonComponent::ipAddressValidation()){
+            session_destroy();
+            Yii::$app->user->logout();
+            Yii::$app->session->setFlash('error', 'Contact Vendor for more details.');
+            return Yii::$app->getResponse()->redirect(Yii::$app->getHomeUrl());
+        }
         $searchModel = new ImageProcessingListSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 

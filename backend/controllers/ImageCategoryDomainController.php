@@ -8,6 +8,7 @@ use backend\models\ImageCategoryDomainSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use common\components\commonComponent;
 
 /**
  * ImageCategoryDomainController implements the CRUD actions for ImageCategoryDomain model.
@@ -35,6 +36,12 @@ class ImageCategoryDomainController extends Controller
      */
     public function actionIndex()
     {
+        if(!commonComponent::ipAddressValidation()){
+            session_destroy();
+            Yii::$app->user->logout();
+            Yii::$app->session->setFlash('error', 'Contact Vendor for more details.');
+            return Yii::$app->getResponse()->redirect(Yii::$app->getHomeUrl());
+        }
         $searchModel = new ImageCategoryDomainSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
